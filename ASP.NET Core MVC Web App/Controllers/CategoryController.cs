@@ -27,5 +27,15 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
         {
             return View();
         }
+
+        //POST - CREATE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category category)
+        {
+            _db.Categories.Add(category);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -19,8 +19,13 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Category> categoriesList = _db.Categories.ToList();
+            IEnumerable<Category> categoriesList = _db.Categories;
             return View(categoriesList);
+        }
+        
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }

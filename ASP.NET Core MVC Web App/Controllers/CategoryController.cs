@@ -60,7 +60,7 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
             return NotFound();
         }
 
-        //PUT - EDIT
+        //POST - EDIT
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Category category)
@@ -72,6 +72,35 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        //GET - DELETE
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var category = _db.Categories.Find(id);
+
+            if (category != null)
+            {
+                return View(category);
+            }
+            return NotFound();
+        }
+
+        //POST - DELETE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            var category = _db.Categories.Find(id);
+
+            _db.Categories.Remove(category);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

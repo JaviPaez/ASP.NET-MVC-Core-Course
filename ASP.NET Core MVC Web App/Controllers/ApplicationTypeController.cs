@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace ASP.NET_Core_MVC_Web_App.Controllers
 {
-    public class CategoryController : Controller
+    public class ApplicationTypeController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public CategoryController(ApplicationDbContext db)
+        public ApplicationTypeController(ApplicationDbContext db)
         {
             _db = db;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Category> categoriesList = _db.Categories;
-            return View(categoriesList);
+            IEnumerable<ApplicationType> appTypesList = _db.ApplicationTypes;
+            return View(appTypesList);
         }
         
         public IActionResult Create()
@@ -31,15 +31,11 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
         //POST - CREATE
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category category)
+        public IActionResult Create(ApplicationType applicationType)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Categories.Add(category);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View();            
+            _db.ApplicationTypes.Add(applicationType);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

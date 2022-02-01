@@ -14,5 +14,6 @@ namespace ASP.NET_Core_MVC_Web_App.Data
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<ApplicationType> ApplicationTypes { get; set; }
     }
 }

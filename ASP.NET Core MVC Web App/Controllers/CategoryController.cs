@@ -23,6 +23,7 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
             return View(categoriesList);
         }
 
+        //GET - CREATE
         public IActionResult Create()
         {
             return View();
@@ -36,6 +37,37 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(category);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        //GET - EDIT
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var category = _db.Categories.Find(id);
+
+            if (category != null)
+            {
+                return View(category);
+            }
+            return NotFound();
+        }
+
+        //PUT - EDIT
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Update(category);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }

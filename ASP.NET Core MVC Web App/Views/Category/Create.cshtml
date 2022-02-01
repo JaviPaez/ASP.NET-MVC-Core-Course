@@ -39,7 +39,7 @@
 
                         <div class="col">
                             <a asp-action="Index" class="btn btn-success w-100">
-                                Back
+                                <i class="far fa-caret-square-left"></i> Back
                             </a>
                         </div>
                         <div class="col">
@@ -57,6 +57,8 @@
     </div>
 </form>
 
-@section Scripts{ 
-@{ <partial name="_ValidationScriptsPartial" />}
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }

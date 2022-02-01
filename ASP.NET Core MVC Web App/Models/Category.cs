@@ -5,7 +5,7 @@ namespace ASP.NET_Core_MVC_Web_App.Models
 {
     public class Category : EntityBase
     {
-        [Required(ErrorMessage ="Name is required")]
+        [Required]
         public string Name { get; set; }
 
         [Required]

@@ -22,7 +22,7 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
             IEnumerable<Category> categoriesList = _db.Categories;
             return View(categoriesList);
         }
-        
+
         public IActionResult Create()
         {
             return View();
@@ -39,7 +39,7 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View();            
+            return View();
         }
     }
 }

@@ -93,11 +93,9 @@ namespace ASP.NET_Core_MVC_Web_App.Controllers
 
         //POST - DELETE
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int? id)
+        [ValidateAntiForgeryToken]      
+        public IActionResult DeletePost(Category category)
         {
-            var category = _db.Categories.Find(id);
-
             _db.Categories.Remove(category);
             _db.SaveChanges();
             return RedirectToAction("Index");
